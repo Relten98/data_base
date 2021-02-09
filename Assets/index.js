@@ -37,3 +37,6 @@ db.connect((err)=>{
 
 // ARRAY TIME OH YEAH
 
+const employeeArray {
+    
+}
