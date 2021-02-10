@@ -41,7 +41,7 @@ const connection = mysql.createConnection({
     // password
 
     // FORGOT MINE. AAAAAAAAAAAAAAAA
-    password: '123456789',
+    password: 'password123',
 
     database: 'employees'
 });
