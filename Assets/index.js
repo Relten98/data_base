@@ -1,6 +1,23 @@
 
 const express = require("express");
 const mysql = require("mysql");
+require('console.table');
+
+const promptMessages = {
+    viewEmployees: "View All Employees",
+    newEmployee: "Add An Employee",
+    deleteEmployee: "Remove An Employee",
+
+    viewDepartments: "View All Employees By Department",
+    viewRoles: "View All Roles",
+    
+    updateRole: "Update Employee Role",
+    viewManagers: "View All Employees By Manager",
+    
+    updateEmployeeManager: "Update Employee Manager",
+    
+    exit: "E N D"
+};
 
 const { createConnection } = require("net");
 const { hostname } = require("os");
@@ -12,15 +29,21 @@ const app = express();
 
 //// Connections I guess???? Don't have interent, so I hope this works
 
-mysql.createConnection({
+const connection = mysql.createConnection({
+    host: 'localhost',
 
-host: "localhost",
+    // Your port; if not 3306
+    port: 3306,
 
+    // username
+    user: 'root',
 
-user: userName,
-password: : passwordNum,
-database:"nodemysql",
+    // password
 
+    // FORGOT MINE. AAAAAAAAAAAAAAAA
+    password: '123456789',
+
+    database: 'employees'
 });
 
 // MySQL connector, I think.
