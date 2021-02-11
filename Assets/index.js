@@ -40,7 +40,7 @@ const connection = mysql.createConnection({
 
     // password
 
-    // FORGOT MINE. AAAAAAAAAAAAAAAA
+    // ultra high security password going on here.
     password: 'password123',
 
     database: 'employees'
