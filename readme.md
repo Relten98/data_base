@@ -1,7 +1,6 @@
 
   <h1 align="center">Team Viewer</h1>
   <br />
-
   Made by Ty Diezhandino (Relten)
 
   ## Description / Features
