@@ -20,15 +20,10 @@
   
   Users are (hopefully) expected to follow this lisense guidelines, or else they shalt be smitten with the wrath of my dissapointment.
 
-  ## Contributors
-   undefined
-  
-  ## Tests
-  undefined
   <br />
   
   ## Contact information
-  GitHub: [undefined](https://github.com/undefined)
+  GitHub: [Relten98](https://github.com/relten98)
   <br />
   <br/>
   Have any questions? feel free to email at: Wafelkick@gmail.com

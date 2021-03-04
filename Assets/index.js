@@ -16,7 +16,7 @@ const promptMessages = {
     
     updateEmployeeManager: "Update Employee Manager",
     
-    exit: "E N D"
+    exit: "End"
 };
 
 const { createConnection } = require("net");
@@ -39,7 +39,6 @@ const connection = mysql.createConnection({
     user: 'root',
 
     // password
-
     // ultra high security password going on here.
     password: 'password123',
 
