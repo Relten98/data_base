@@ -73,7 +73,7 @@ function start() {
                     allRoles();
                     break;
 
-        })
+            });
 }
 // Express time? Express time.
 const app = express();
