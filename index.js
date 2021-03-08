@@ -1,79 +1,64 @@
+// Inquirer information
+let inquirer = require("inquirer"); // For interacting with the user via the command-line
 
 // Dependencies:
-const express = require("express"); // Calls in express
-let mysql = require("mysql"); // The mysql database
-let inquirer = require("inquirer"); // For interacting with the user via the command-line
-require("console.table"); // Makes info pretty, or so I have been told.
+const connection = require("./db/connection"); // This is just the connection to the database
 
-// MySQL info condensed for your entertainment.
-let configProp = {
-    host: "localhost",
-    // Port; if not 3306
-    port: 3306,
-    // Username
-    user: "root",
-    // Password & db
-    password: "root",
-    database: "employee_db"
-};
+const manage = require("./manage/manage"); // Our little manager
 
-let connection = mysql.createConnection(configProp);
+const view = require("./manage/view"); // Organizes views
 
-// mySQL connection
-connection.connect(function (err) {
-    if (err) throw err; // Ha ha, this isn't going to be the bane of my existence.
-
-    console.log('Welcome!'); // Pointless welcome message, but okay.
-
-    start(); // The real magic that starts this out.
-})
-
-// Probably a pointless express call.
-const app = express();
-
-function start() {
+function stepOne() {
     inquirer
         .prompt({
-            name: 'action',
-            type: 'list',
-            message: 'Menu',
+            name: "first",
+            type: "list",
+            message: "Hello, what is your inquiry?",
             choices: [
-                "View All Employees",
-                "Add An Employee",
-                "Remove An Employee",
-                "View All Employees By Department",
+                "View All",
+                "Add Employee",
+                "Remove Employee",
+                "View All By Department",
                 "View All Roles",
                 "Update Employee Role",
-                "View All Employees By Manager",
-                "Update Employee Manager",
+                "View All By Manager",
+                "Update Manager",
                 "End"
             ]
+        }).then(function (answer) {
+            if (answer === "View All Employees") {
+                view.viewAll();
+
+            } else if (answer === "Add Employee") {
+                manage.addData();
+
+            } else if (answer === "Remove Employee") {
+                manage.removeData();
+
+            } else if (answer === "View All By Department") {
+                view.viewbyDept();
+
+            } else if (answer === "View All Roles") {
+                view.viewRoles();
+
+            } else if (answer === "Update Employee Role") {
+                manage.addData();
+
+            } else if (answer === "View All By Manager") {
+                view.viewbyManager();
+
+            } else if (answer === "Update Manager") {
+                manage.updateManager();
+
+            } else {
+                console.log("Goodbye yellow brick road!")
+                connection.end();
+            }
         });
-
-        .then((action) => {
-            switch (answer.action) {
-                // There has got to be a better way to do this... This is just... Super repetative...
-                case "View all employees":
-                    viewAllEmp();
-                    break;
-
-                case "Add An Employee":
-                    newEmp();
-                    break;
-
-                case "Remove An Employee":
-                    removeEmp();
-                    break;
-
-                case "View All Employees By Department":
-                    allbyDepartment();
-                    break;
-
-                case "View All Roles":
-                    allRoles();
-                    break;
-
-            });
 }
-// Express time? Express time.
-const app = express();
+
+
+//Adding a department, role, or employee
+
+exports.stepOne = stepOne;
+stepOne();
