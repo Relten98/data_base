@@ -17,8 +17,6 @@
   },
   "homepage": "https://github.com/Relten98/data_base#readme",
   "dependencies": {
-    "express": "^4.17.1",
-    "init": "^0.1.2",
     "inquirer": "^7.0.4",
     "mysql": "^2.18.1"
   }

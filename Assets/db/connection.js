@@ -1,20 +1,18 @@
 const mysql = require("mysql");
+const util = require("util");
 
-
-const sqlConnect = mysql.createConnection({
+const connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
     password: "password123",
-    database: "employees_db"
+    database: "employee_db"
 });
 
-sqlConnect.connect(function (error) {
+connection.connect(function (error) {
     if (error) {
         throw error;
     }
-
 });
-
-
-module.exports = sqlConnect;
+// Needed for SQL One 
+module.exports = connection;

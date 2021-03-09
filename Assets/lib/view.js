@@ -1,7 +1,7 @@
 // Dependencies
 var inquirer = require("inquirer");
-const sqlConnect = require("../db/connection");
-const stepOne = require("../index");
+const connection = require("../app");
+const stepOne = require("../app");
 
 const viewAll = () => {
     connection.query(
@@ -13,12 +13,12 @@ const viewAll = () => {
         function (err, results) {
             if (err) throw err;
 
-            console.table(results);
+            console.log(results);
             stepOne.stepOne();
         }
     );
 }
-const viewEmployeesByDepart = () => {
+const viewbyDept = () => {
     connection.query(
         `SELECT d.department_name, e.first_name, e.last_name, e.id AS employee_id, r.salary, r.role_title 
         FROM employee e 
@@ -28,7 +28,7 @@ const viewEmployeesByDepart = () => {
         ORDER BY d.department_name`,
         function (err, results) {
             if (err) throw err;
-            console.table(results);
+            console.log(results);
             stepOne.stepOne();
         }
     )
@@ -41,18 +41,18 @@ const viewDepartments = () => {
         ORDER BY d.department_name`,
         function (err, results) {
             if (err) throw err;
-            console.table(results);
+            console.log(results);
             stepOne.stepOne();
         }
     )
 }
-const viewPositions = () => {
+const viewRoles = () => {
     connection.query(
-        `SELECT roles_title, salary FROM role
-         ORDER BY roles_title `,
+        `SELECT role_title, salary FROM role
+         ORDER BY role_title `,
         function (err, results) {
             if (err) throw err;
-            console.table(results);
+            console.log(results);
             stepOne.stepOne();
         }
     )
