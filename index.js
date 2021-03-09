@@ -2,10 +2,9 @@
 let inquirer = require("inquirer"); // For interacting with the user via the command-line
 
 // Dependencies:
-const connection = require("./db/connection"); // This is just the connection to the database
+const sqlConnect = require("./db/connection"); // This is just the connection to the database
 
 const manage = require("./manage/manage"); // Our little manager
-
 const view = require("./manage/view"); // Organizes views
 
 function stepOne() {
@@ -13,7 +12,7 @@ function stepOne() {
         .prompt({
             name: "first",
             type: "list",
-            message: "Hello, what is your inquiry?",
+            message: "Hello, what is your ?",
             choices: [
                 "View All",
                 "Add Employee",
@@ -25,12 +24,13 @@ function stepOne() {
                 "Update Manager",
                 "End"
             ]
+        
         }).then(function (answer) {
             if (answer === "View All Employees") {
                 view.viewAll();
 
             } else if (answer === "Add Employee") {
-                manage.addData();
+                manage.addEmployee();
 
             } else if (answer === "Remove Employee") {
                 manage.removeData();
@@ -42,17 +42,14 @@ function stepOne() {
                 view.viewRoles();
 
             } else if (answer === "Update Employee Role") {
-                manage.addData();
+                manage.updateData();
 
             } else if (answer === "View All By Manager") {
                 view.viewbyManager();
 
-            } else if (answer === "Update Manager") {
-                manage.updateManager();
-
             } else {
                 console.log("Goodbye yellow brick road!")
-                connection.end();
+                sqlConnect.end();
             }
         });
 }
