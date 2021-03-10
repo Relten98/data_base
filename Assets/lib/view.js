@@ -1,7 +1,22 @@
 // Dependencies
 var inquirer = require("inquirer");
-const connection = require("../app");
 const stepOne = require("../app");
+const mysql = require("mysql");
+
+const connection = mysql.createConnection({
+    host: "localhost",
+    port: 3306,
+    user: "root",
+    password: "password123",
+    database: "employee_db"
+});
+
+connection.connect(function (error) {
+    if (error) {
+        throw error;
+    }
+});
+
 
 const viewAll = () => {
     connection.query(
@@ -13,7 +28,7 @@ const viewAll = () => {
         function (err, results) {
             if (err) throw err;
 
-            console.log(results);
+            console.table(results);
             stepOne.stepOne();
         }
     );
@@ -28,7 +43,7 @@ const viewbyDept = () => {
         ORDER BY d.department_name`,
         function (err, results) {
             if (err) throw err;
-            console.log(results);
+            console.table(results);
             stepOne.stepOne();
         }
     )
@@ -41,7 +56,7 @@ const viewDepartments = () => {
         ORDER BY d.department_name`,
         function (err, results) {
             if (err) throw err;
-            console.log(results);
+            console.table(results);
             stepOne.stepOne();
         }
     )
@@ -52,7 +67,7 @@ const viewRoles = () => {
          ORDER BY role_title `,
         function (err, results) {
             if (err) throw err;
-            console.log(results);
+            console.table(results);
             stepOne.stepOne();
         }
     )

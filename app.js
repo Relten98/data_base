@@ -1,11 +1,8 @@
 // Inquirer information
 const inquirer = require("inquirer"); // For interacting with the user via the command-line
 const mysql = require("mysql");
-// Dependencies:
-const manage = require("./manage/manage"); // Our little manager
-const view = require("./manage/view"); // Organizes views
 
-const sqlConnect = mysql.createConnection({
+const connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
@@ -13,12 +10,24 @@ const sqlConnect = mysql.createConnection({
     database: "employee_db"
 });
 
-sqlConnect.connect(function (error) {
+connection.connect(function (error) {
     if (error) {
         throw error;
     }
-
 });
+
+
+connection.connect(function (error) {
+    if (error) {
+        throw error;
+    }
+});
+
+// Dependencies:
+const add = require("./lib/add"); // scripts to add information
+const remove = require("./lib/delete"); // scripts to remove information
+const update = require("./lib/update"); // Update script
+const view = require("./lib/view"); // Organizes views
 
 function stepOne() {
     inquirer
@@ -27,42 +36,47 @@ function stepOne() {
             type: "list",
             message: "Hello, what would you like to do today?",
             choices: [
-                "View All",
+                "View All Employees",
                 "Add Employee",
                 "Remove Employee",
                 "View All By Department",
+                "Remove Department",
                 "View All Roles",
                 "Update Employee Role",
-                "View All By Manager",
-                "Update Manager",
+                "Remove Role",
+                // "View All By Manager",
+                // "Update Manager",
                 "End"
             ]
-        
+
         }).then(function (answer) {
             if (answer === "View All Employees") {
                 view.viewAll();
 
             } else if (answer === "Add Employee") {
-                manage.addEmployee();
+                add.addEmployee();
 
-            // } else if (answer === "Remove Employee") {
-            //     manage.removeData();
+            } else if (answer === "Remove Employee") {
+                remove.removeEmp();
 
             } else if (answer === "View All By Department") {
                 view.viewbyDept();
 
+            } else if (answer === "Remove Department") {
+                remove.deleteDepart();
+
             } else if (answer === "View All Roles") {
                 view.viewRoles();
 
-            // } else if (answer === "Update Employee Role") {
-            //     manage.updateData();
+            } else if (answer === "Update Employee Role") {
+                update.updateData();
 
-            } else if (answer === "View All Departments") {
-                view.viewDept();
+            } else if (answer === "Remove Role") {
+                remove.deleteRole();
 
             } else {
                 console.log("Goodbye yellow brick road!")
-                sqlConnect.end();
+                connection.end();
             }
         });
 }

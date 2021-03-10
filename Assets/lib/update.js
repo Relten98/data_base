@@ -1,7 +1,24 @@
 // Import dependancies
 var inquirer = require("inquirer");
-const connection = require("./db/connection");
 const stepOne = require("../app");
+
+const mysql = require("mysql");
+
+const connection = mysql.createConnection({
+    host: "localhost",
+    port: 3306,
+    user: "root",
+    password: "password123",
+    database: "employee_db"
+});
+
+connection.connect(function (error) {
+    if (error) {
+        throw error;
+    }
+});
+
+
 
 function updateData() {
     inquirer

@@ -1,12 +1,27 @@
 // Import dependancies
 var inquirer = require("inquirer");
-const connection = require("./db/connection");
 const stepOne = require("../app");
+const mysql = require("mysql");
+
+const connection = mysql.createConnection({
+    host: "localhost",
+    port: 3306,
+    user: "root",
+    password: "password123",
+    database: "employee_db"
+});
+
+connection.connect(function (error) {
+    if (error) {
+        throw error;
+    }
+});
+
 
 // Yeets the department
 
 function deleteDepart() {
-    sqlConnect.query(`SELECT * FROM department`, function (err) {
+    connection.query(`SELECT * FROM department`, function (err) {
         if (err) throw err;
         inquirer
             .prompt([{
@@ -21,7 +36,7 @@ function deleteDepart() {
                 },
                 message: "What department would you like to remove?",
             }]).then(function (answer) {
-                sqlConnect.query(
+                connection.query(
                     "DELETE FROM department WHERE ?",
                     {
                         department_name: answer.deleteDepart
@@ -39,7 +54,7 @@ function deleteDepart() {
 // Deletes a role
 
 function deleteRole() {
-    sqlConnect.query(`SELECT * FROM roles`, function (err) {
+    connection.query(`SELECT * FROM roles`, function (err) {
         if (err) throw err;
         inquirer
             .prompt([{
@@ -54,7 +69,7 @@ function deleteRole() {
                 },
                 message: "Which role would you like to remove?",
             }]).then(function (answer) {
-                sqlConnect.query(
+                connection.query(
                     "DELETE FROM roles WHERE ?",
                     {
                         roles_title: answer.deleteRole
@@ -71,12 +86,12 @@ function deleteRole() {
 };
 // Deletes an employee
 
-function removeEmployee() {
-    sqlConnect.query(`SELECT * FROM employee`, function (err) {
+function removeEmp() {
+    connection.query(`SELECT * FROM employee`, function (err) {
         if (err) throw err;
         inquirer
             .prompt([{
-                name: "removeEmployee",
+                name: "removeEmp",
                 type: "list",
                 choices: function () {
                     var empArray = [];
@@ -87,14 +102,14 @@ function removeEmployee() {
                 },
                 message: "Which employee would you like to remove?",
             }]).then(function (answer) {
-                sqlConnect.query(
+                connection.query(
                     "DELETE FROM employee WHERE ?",
                     {
-                        id: answer.deleteEmployee
+                        id: answer.removeEmp
                     },
                     function (err, res) {
                         if (err) throw err;
-                        console.log(`Employee ${answer.deleteEmployee} has been removed.`);
+                        console.log(`Employee ${answer.removeEmp} has been removed.`);
                         stepOne.stepOne();
                     }
                 )
@@ -102,4 +117,4 @@ function removeEmployee() {
     });
 };
 
-    module.exports = { manage }
+module.exports = { remove }

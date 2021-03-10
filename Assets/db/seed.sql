@@ -8,9 +8,6 @@ ORDER BY d.department_name;
 SELECT role_title, salary FROM role
 ORDER BY role_title; 
 
--- delete employees-- 
-DELETE FROM Customers WHERE CustomerName='Alfreds Futterkiste';
-
 
 SELECT * FROM department;
 SELECT * FROM role;
