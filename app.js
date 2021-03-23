@@ -80,9 +80,7 @@ function stepOne() {
             }
         });
 }
-
+stepOne();
 
 //Adding a department, role, or employee
-
 exports.stepOne = stepOne;
-stepOne();

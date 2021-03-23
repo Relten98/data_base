@@ -17,10 +17,11 @@
   },
   "homepage": "https://github.com/Relten98/data_base#readme",
   "dependencies": {
+    "chalk": "^4.1.0",
     "console.table": "^0.10.0",
     "express": "^4.17.1",
     "figlet": "^1.5.0",
-    "inquirer": "^7.0.4",
+    "inquirer": "^7.3.3",
     "mysql": "^2.18.1",
     "mysql2": "^2.2.5",
     "util": "^0.12.3"
