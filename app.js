@@ -1,8 +1,8 @@
 // Dependencies:
-const add = require("Assets/lib/add.js"); // scripts to add information
-const remove = require("Assets/lib/delete"); // scripts to remove information
-const update = require("Assets/lib/update"); // Update script
-const view = require("Assets/lib/view"); // Organizes views
+const addData = require("./lib/add.js"); // scripts to add information
+const remove = require("./lib/delete"); // scripts to remove information
+const update = require("./lib/update"); // Update script
+const view = require("./lib/view"); // Organizes views
 
 // Inquirer information
 const inquirer = require("inquirer"); // For interacting with the user via the command-line
@@ -54,7 +54,7 @@ function stepOne() {
                 view.viewAll();
 
             } else if (answer === "Add Employee") {
-                add.addEmployee();
+                addData.addEmployee();
 
             } else if (answer === "Remove Employee") {
                 remove.removeEmp();
