@@ -146,5 +146,5 @@ function addEmployee() {
                 })
         }
     )
-}
-module.exports = { add }
+};
+module.exports = { add };

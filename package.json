@@ -1,5 +1,5 @@
 {
-  "name": "database",
+  "name": "data_base",
   "version": "1.0.0",
   "description": "An employee tracker that uses inquirer, node, and mySQL",
   "main": "index.js",
