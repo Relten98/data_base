@@ -32,8 +32,8 @@ connection.connect(function (error) {
 function stepOne() {
     inquirer
         .prompt({
-            name: "first",
             type: "list",
+            name: "first",
             message: "Hello, what would you like to do today?",
             choices: [
                 "View All Employees",
