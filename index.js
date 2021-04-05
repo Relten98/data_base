@@ -8,6 +8,7 @@ const view = require("./lib/view"); // Organizes views
 const inquirer = require("inquirer"); // For interacting with the user via the command-line
 const mysql = require("mysql");
 
+// Lmao
 const connection = mysql.createConnection({
     host: "localhost",
     port: 3306,
